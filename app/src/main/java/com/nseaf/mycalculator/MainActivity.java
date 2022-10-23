@@ -53,4 +53,64 @@ public class MainActivity extends AppCompatActivity {
         calculator.memPlusClicked();
         updateCalcUI();
     }
+
+    public void memRecallClicked(View view) {
+        calculator.memRecallClicked();
+        updateCalcUI();
+    }
+
+    public void memMinusClicked(View view) {
+        calculator.memMinusClicked();
+        updateCalcUI();
+    }
+
+    public void memClearClicked(View view) {
+        calculator.memClearClicked();
+        updateCalcUI();
+    }
+
+    public void percentClicked(View view) {
+        calculator.memClearClicked();
+        updateCalcUI();
+    }
+
+    public void expClicked(View view) {
+        calculator.expClicked();
+        updateCalcUI();
+    }
+
+    public void piClicked(View view) {
+        calculator.piClicked();
+        updateCalcUI();
+    }
+
+    public void divClicked(View view) {
+        calculator.divClicked();
+        updateCalcUI();
+    }
+
+    public void mulClicked(View view) {
+        calculator.mulClicked();
+        updateCalcUI();
+    }
+
+    public void minClicked(View view) {
+        calculator.minClicked();
+        updateCalcUI();
+    }
+
+    public void plusClicked(View view) {
+        calculator.plusClicked();
+        updateCalcUI();
+    }
+
+    public void equalClicked(View view) {
+        calculator.equalClicked();
+        updateCalcUI();
+    }
+
+    public void radicalPointClicked(View view) {
+        calculator.radicalPointClicked();
+        updateCalcUI();
+    }
 }
