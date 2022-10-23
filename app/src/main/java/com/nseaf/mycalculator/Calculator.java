@@ -4,12 +4,15 @@ public class Calculator {
     String numberString;
     String detailsString;
     long intNumber;
+    long intNumber2;
     double realNumber;
+    double realNumber2;
     boolean isIntNumber;
     boolean numHasRadixPoint;
     long memoryInt;
     double memoryDouble;
     boolean isIntMemory;
+    String operation;
 
     public Calculator() {
         this.numberString = "0";
@@ -17,8 +20,14 @@ public class Calculator {
         this.isIntNumber = true;
         this.isIntMemory = true;
         this.numHasRadixPoint = false;
+        this.intNumber = 0;
+        this.intNumber2 = 0;
+        this.realNumber = 0.0;
+        this.realNumber2 = 0.0;
+        this.operation = "";
         this.memoryInt = 0;
         this.memoryDouble = 0.0;
+
     }
 
     public void processNumber(int i) {
@@ -42,17 +51,16 @@ public class Calculator {
     }
 
     public void clearClicked() {
-        if (numberString == "0" && detailsString == "") {
+        numberString="0";
+        detailsString="";
+        intNumber=0;
+        realNumber=0.0;
+        intNumber2 = 0;
+        realNumber2 = 0.0;
+        operation = "";
+        isIntNumber=true;
+        numHasRadixPoint=false;
 
-            intNumber=0;
-            realNumber=0.0;
-            isIntNumber=true;
-            numHasRadixPoint=false;
-        }
-        else {
-            numberString="0";
-            detailsString="";
-        }
     }
 
     public void memPlusClicked() {
@@ -114,6 +122,12 @@ public class Calculator {
     }
 
     public void equalClicked() {
+        if (operation != "") {
+
+            if (operation == "+") {
+
+            }
+        }
     }
 
     public void radicalPointClicked() {
