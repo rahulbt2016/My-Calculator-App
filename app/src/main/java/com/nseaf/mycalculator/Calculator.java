@@ -30,7 +30,7 @@ public class Calculator {
         this.operation = "";
         this.memoryInt = 0;
         this.memoryDouble = 0.0;
-
+        this.isFirstOperation = true;
     }
 
     public void processNumber(int i) {
@@ -108,9 +108,13 @@ public class Calculator {
     }
 
     public void expClicked() {
+        operationClicked("exp");
+        detailsString = "Operation: eˣ";
     }
 
     public void piClicked() {
+        operationClicked("pi");
+        detailsString = "Operation: \uD835\uDF0B";
     }
 
     public void divClicked() {
@@ -136,6 +140,7 @@ public class Calculator {
         operation = "+";
         detailsString = "Operation: +";
     }
+
 
     public void equalClicked() {
         if (!operation.equalsIgnoreCase("")) {
@@ -170,14 +175,97 @@ public class Calculator {
             }
 
             else if (operation.equalsIgnoreCase("-")) {
+                if (isIntNumber && isIntNumber2) {
+                    intNumber = intNumber2 - intNumber;
+                    isIntNumber = true;
+                }
+                else if (!isIntNumber && !isIntNumber2){
+                    realNumber = realNumber2 - realNumber;
+                    isIntNumber = false;
+                }
+                else if (!isIntNumber && isIntNumber2) {
+                    realNumber = intNumber2 - realNumber;
+                    isIntNumber = false;
+                }
+                else if (isIntNumber && !isIntNumber2) {
+                    realNumber = realNumber2 - intNumber;
+                    isIntNumber = false;
+                }
+
+                if (!isIntNumber) {
+                    if (realNumber % 1 == 0.0) {
+                        intNumber = (int) realNumber;
+                        isIntNumber = true;
+
+                    }
+                }
+
+                numberString = isIntNumber ?  String.valueOf(intNumber) : String.valueOf(realNumber);
+
+            }
+
+            else if (operation.equalsIgnoreCase("/")) {
+
+                if (isIntNumber && isIntNumber2) {
+                    realNumber = (double) intNumber2 / (double) intNumber;
+                    isIntNumber = false;
+                }
+                else if (!isIntNumber && !isIntNumber2){
+                    realNumber = (double) realNumber2 / (double) realNumber;
+                    isIntNumber = false;
+                }
+                else if (!isIntNumber && isIntNumber2) {
+                    realNumber = (double) intNumber2 / (double) realNumber;
+                    isIntNumber = false;
+                }
+                else if (isIntNumber && !isIntNumber2) {
+                    realNumber = (double) realNumber2 / (double) intNumber;
+                    isIntNumber = false;
+                }
+
+                if (!isIntNumber) {
+                    if (realNumber % 1 == 0.0) {
+                        intNumber = (int) realNumber;
+                        isIntNumber = true;
+
+                    }
+                }
+
+                numberString = isIntNumber ?  String.valueOf(intNumber) : String.valueOf(realNumber);
+
 
             }
 
             else if (operation.equalsIgnoreCase("*")) {
 
-            }
 
-            else if (operation.equalsIgnoreCase("/")) {
+                if (isIntNumber && isIntNumber2) {
+                    intNumber = intNumber2 * intNumber;
+                    isIntNumber = true;
+                }
+                else if (!isIntNumber && !isIntNumber2){
+                    realNumber = realNumber2 * realNumber;
+                    isIntNumber = false;
+                }
+                else if (!isIntNumber && isIntNumber2) {
+                    realNumber = intNumber2 * realNumber;
+                    isIntNumber = false;
+                }
+                else if (isIntNumber && !isIntNumber2) {
+                    realNumber = realNumber2 * intNumber;
+                    isIntNumber = false;
+                }
+
+                if (!isIntNumber) {
+                    if (realNumber % 1 == 0.0) {
+                        intNumber = (int) realNumber;
+                        isIntNumber = true;
+
+                    }
+                }
+
+                numberString = isIntNumber ?  String.valueOf(intNumber) : String.valueOf(realNumber);
+
 
             }
         }
@@ -190,6 +278,12 @@ public class Calculator {
         detailsString = "Answer";
         operation = "";
         isFirstOperation = true;
+    }
+
+    public void percentClicked() {
+
+        operationClicked("per");
+        detailsString = "Operation: %";
     }
 
     public void radicalPointClicked() {
@@ -230,4 +324,75 @@ public class Calculator {
         numHasRadixPoint = false;
         numberString = "0";
     }
+
+    private void operationClicked(String op) {
+
+        if (op.equalsIgnoreCase("pi")) {
+            realNumber = Math.PI;
+            isIntNumber = false;
+        }
+        else if (op.equalsIgnoreCase("exp")) {
+            if (isIntNumber){
+                realNumber = Math.exp(intNumber);
+            }
+            else {
+                realNumber = Math.exp(realNumber);
+            }
+
+            isIntNumber = false;
+        }
+        else if (op.equalsIgnoreCase("per")) {
+
+            if (isFirstOperation) {
+
+                if (isIntNumber) {
+
+                    realNumber = (double) intNumber / 100;
+                }
+                else {
+
+                    realNumber = (double) realNumber / 100;
+                }
+
+                isIntNumber = false;
+            }
+            else {
+
+                if (isIntNumber && isIntNumber2) {
+                    realNumber = ((double) intNumber * (double) intNumber2) / 100;
+                    isIntNumber = false;
+                }
+                else if (!isIntNumber && !isIntNumber2){
+                    realNumber = ((double) realNumber * (double) realNumber2) / 100;
+                    isIntNumber = false;
+                }
+                else if (!isIntNumber && isIntNumber2) {
+                    realNumber = ((double) intNumber * (double) realNumber2) / 100;
+                    isIntNumber = false;
+                }
+                else if (isIntNumber && !isIntNumber2) {
+                    realNumber = ((double) realNumber * (double) intNumber2) / 100;
+                    isIntNumber = false;
+                }
+
+            }
+
+        }
+
+
+        if (realNumber % 1 == 0.0) {
+            isIntNumber = true;
+            intNumber = (int) realNumber;
+        }
+
+        if (isIntNumber) {
+            numberString = String.valueOf(intNumber);
+        }
+        else {
+            numberString = String.valueOf(realNumber);
+        }
+
+    }
+
+
 }

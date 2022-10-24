@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void numberClicked(View view) {
         switch (view.getId()){
-            case R.id.b_0: calculator.processNumber(0); break;
+            case R.id.b_0: calculator.processNumber(0);break;
             case R.id.b_1: calculator.processNumber(1); break;
             case R.id.b_2: calculator.processNumber(2); break;
             case R.id.b_3: calculator.processNumber(3); break;
@@ -70,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void percentClicked(View view) {
-        calculator.memClearClicked();
+        calculator.percentClicked();
         updateCalcUI();
     }
 
@@ -105,6 +106,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void equalClicked(View view) {
+
         calculator.equalClicked();
         updateCalcUI();
     }
