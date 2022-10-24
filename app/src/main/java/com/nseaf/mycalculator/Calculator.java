@@ -71,6 +71,7 @@ public class Calculator {
 
         if (isIntMemory) {
             memoryDouble = memoryInt + Double.parseDouble(numberString);
+            isIntMemory = false;
         }
         else {
             memoryDouble = memoryDouble + Double.parseDouble(numberString);
@@ -106,6 +107,7 @@ public class Calculator {
 
         if (isIntMemory) {
             memoryDouble = memoryInt - Double.parseDouble(numberString);
+            isIntMemory = false;
         }
         else {
             memoryDouble = memoryDouble - Double.parseDouble(numberString);
@@ -414,7 +416,9 @@ public class Calculator {
             numberString = String.valueOf(intNumber);
         }
         else {
-            numberString = String.valueOf(realNumber);
+            numberString = String.valueOf(realNumber).length() >= 12 ?
+                    String.valueOf(realNumber).substring(0, 11) :
+                    String.valueOf(realNumber);
         }
 
     }
