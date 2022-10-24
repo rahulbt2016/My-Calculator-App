@@ -68,43 +68,68 @@ public class Calculator {
     }
 
     public void memPlusClicked() {
-        if(isIntMemory){
-            if(isIntNumber) {
-                memoryInt += intNumber;
-                detailsString = "Memory: "+memoryInt;
-            }
-            else {
-                isIntNumber=false;
-                memoryDouble = memoryInt + realNumber;
-            }
+
+        if (isIntMemory) {
+            memoryDouble = memoryInt + Double.parseDouble(numberString);
         }
+        else {
+            memoryDouble = memoryDouble + Double.parseDouble(numberString);
+        }
+
+        if (memoryDouble % 1 == 0.0) {
+            memoryInt = (int) memoryDouble;
+            memoryDouble = 0.0;
+            isIntMemory = true;
+        }
+
+        detailsString = "M+ clicked";
+
+        System.out.println(memoryDouble);
     }
 
     public void memRecallClicked() {
-        detailsString = "Memory Recall clicked";
+        detailsString = "MR clicked";
+
         if (isIntMemory) {
+            intNumber = memoryInt;
+            isIntNumber = true;
             numberString = Long.toString(memoryInt);
         }
         else {
+            realNumber = memoryDouble;
+            isIntNumber = false;
             numberString = Double.toString(memoryDouble);
         }
     }
 
     public void memMinusClicked() {
 
-        if(isIntMemory){
-            if(isIntNumber) {
-                memoryInt -= intNumber;
-                detailsString = "Memory: "+memoryInt;
-            }
-            else {
-                isIntNumber=false;
-                memoryDouble = memoryInt - realNumber;
-            }
+        if (isIntMemory) {
+            memoryDouble = memoryInt - Double.parseDouble(numberString);
         }
+        else {
+            memoryDouble = memoryDouble - Double.parseDouble(numberString);
+        }
+
+        if (memoryDouble % 1 == 0.0) {
+            memoryInt = (int) memoryDouble;
+            memoryDouble = 0.0;
+            isIntMemory = true;
+        }
+
+        detailsString = "M- clicked";
     }
 
     public void memClearClicked() {
+
+        memoryInt = 0;
+        memoryDouble = 0.0;
+        isIntMemory = true;
+
+        numberString = "0";
+        isIntNumber = true;
+        intNumber = 0;
+        detailsString = "Memory cleared (MC)";
     }
 
     public void expClicked() {
